@@ -6,6 +6,8 @@ TagManager:
   tags:
   - SpawnPoint
   - Rooms
+  - PosCharacter
+  - EnterRoom
   layers:
   - Default
   - TransparentFX
