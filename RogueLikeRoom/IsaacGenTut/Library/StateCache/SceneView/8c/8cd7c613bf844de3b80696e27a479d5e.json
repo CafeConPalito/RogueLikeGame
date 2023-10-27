@@ -1,0 +1,5 @@
+<<<<<<< HEAD
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"m_AlwaysRefresh":false,"showFog":true,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true,"showVisualEffectGraphs":true,"m_FxEnabled":true},"in2DMode":true,"pivot":{"x":-7.47418737411499,"y":13.203437805175782,"z":-0.7152803540229797},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":54.84778594970703,"orthographic":true}
+=======
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"m_AlwaysRefresh":false,"showFog":true,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true,"showVisualEffectGraphs":true,"m_FxEnabled":true},"in2DMode":true,"pivot":{"x":-5.642523288726807,"y":15.775237083435059,"z":-0.6670207977294922},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":48.94780349731445,"orthographic":true}
+>>>>>>> 7-implementar-sistemas-de-salas
