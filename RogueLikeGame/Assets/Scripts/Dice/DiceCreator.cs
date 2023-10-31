@@ -2,16 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DiceCreator : MonoBehaviour
+public class DiceCreator : MonoBehaviour 
 {
 
     private static DiceFace[] faces = new DiceFace[6];
+    //private readonly DiceFace valor;
 
-    public static void createDice (int[] tipe, int[] fValue)
+    public static void createDice(DiceFace[] caras)
+    //public static void createDice(int[] tipe, int[] fValue)
     {
-        for (int i = 0;6> i; i++)
+        for (int i = 0; i < faces.Length; i++)
         {
-            faces[0] = new DiceFace(tipe[i], fValue[i]); //Tipo y Valor
+            //valor.Tipe = 2;
+            //sout(valor.Tipe)
+
+            //valor.Tipe = tipe[i];
+            //valor.FValue = fValue[i];
+
+            faces[i] = caras[i];
+
+            //NO LE GUSTA EL NEW
+            //faces[0] = new DiceFace(tipe[i],fValue[i]);
+
         }
     }
 

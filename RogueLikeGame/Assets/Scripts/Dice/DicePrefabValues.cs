@@ -6,7 +6,7 @@ public class DicePrefabValues : MonoBehaviour
 {
     private void Awake()
     {
-        Espada();
+        //Espada();
     }
 
     // Start is called before the first frame update
@@ -23,23 +23,40 @@ public class DicePrefabValues : MonoBehaviour
 
     public static void Espada()
     {
-        int[] tipe = { 1, 1, 1, 1, 1, 1 };
-        int[] fValue = { 1, 1, 1, 1, 1, 1 };
-        DiceCreator.createDice(tipe, fValue);
+        DiceFace[] faces = new DiceFace[6];
+        faces[0] = new DiceFace(1, 1);
+        faces[1] = new DiceFace(1, 1);
+        faces[2] = new DiceFace(1, 1);
+        faces[3] = new DiceFace(1, 1);
+        faces[4] = new DiceFace(1, 1);
+        faces[5] = new DiceFace(1, 1);
+        DiceCreator.createDice(faces);
+
     }
 
-    public void Escudo()
+
+    public static void Escudo()
     {
-        int[] tipe = { 2, 2, 2, 2, 2, 2 };
-        int[] fValue = { 1, 1, 1, 1, 1, 1 };
-        DiceCreator.createDice(tipe, fValue);
+        DiceFace[] faces = new DiceFace[6];
+        faces[0] = new DiceFace(2, 1);
+        faces[1] = new DiceFace(2, 1);
+        faces[2] = new DiceFace(2, 1);
+        faces[3] = new DiceFace(2, 1);
+        faces[4] = new DiceFace(2, 1);
+        faces[5] = new DiceFace(2, 1);
+        DiceCreator.createDice(faces);
     }
 
-    public void Habilidad()
+    public static void Habilidad()
     {
-        int[] tipe = { 3, 3, 3, 3, 3, 3 };
-        int[] fValue = { 1, 1, 1, 1, 1, 1 };
-        DiceCreator.createDice(tipe, fValue);
+        DiceFace[] faces = new DiceFace[6];
+        faces[0] = new DiceFace(3, 3);
+        faces[1] = new DiceFace(3, 4);
+        faces[2] = new DiceFace(3, 5);
+        faces[3] = new DiceFace(3, 6);
+        faces[4] = new DiceFace(3, 7);
+        faces[5] = new DiceFace(3, 8);
+        DiceCreator.createDice(faces);
     }
 
 }

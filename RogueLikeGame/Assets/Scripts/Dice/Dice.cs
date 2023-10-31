@@ -17,6 +17,9 @@ public class Dice : MonoBehaviour
     [SerializeField]
     private Rigidbody rb;
 
+    [SerializeField]
+    private int mejoraTemporal = 0;
+
     //Para Borrar
     private int _diceIndex = -1;
 
@@ -35,7 +38,9 @@ public class Dice : MonoBehaviour
         
         rb = GetComponent<Rigidbody>();
 
-        DicePrefabValues.Espada();
+        DicePrefabValues.Habilidad();
+
+        //Apagado hasta arreglar!
         diceValuesUpdate();
 
     }
@@ -73,6 +78,7 @@ public class Dice : MonoBehaviour
             //Girar el dado para que quede con el texto bien!
             rb.transform.eulerAngles = new Vector3 (rb.transform.eulerAngles.x, 0f, rb.transform.eulerAngles.z);
             GetFaceSideUp();
+            diceValuesUpdate();
 
             //con Movimiento
             //float aceleration = 9f;
@@ -158,29 +164,29 @@ public class Dice : MonoBehaviour
 
     private void diceValuesUpdate()
     {
-        /*
+        
         for (int i = 0; i < diceFacesValues.Length; i++) {
 
-            diceFacesValues[i].SetText(DiceCreator.);
-            
+            //Carga el valor del dado            
+            diceFacesValues[i].SetText((DiceCreator.getValueOfFace(i)+ mejoraTemporal )+"");
 
-            
-            // Segun el tipo de dado un color u otros
-            /*
-            if () //Ataque
+            //Segun el tipo de dado un color u otros
+            int tipe = DiceCreator.getTipeOfFace(i);
+
+            if (tipe == 1) //Ataque
             {
                 diceFacesValues[i].color = Color.red;
-            } else if () //Defensa
+            } else if (tipe == 2) //Defensa
             {
                 diceFacesValues[i].color = Color.gray;
-            } else if () //Habilidad
+            } else if (tipe == 3) //Habilidad
             {
                 diceFacesValues[i].color = Color.yellow;
             }
             
-            
+
         }
-        */
+
 
     }
 }
