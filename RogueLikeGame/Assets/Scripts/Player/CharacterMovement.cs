@@ -11,7 +11,8 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField]
     private float aceleration = 100.0f;
 
-    private int rotationgrade = 0;
+    private float angulo;
+    private Vector2 movimiento;
 
     // Start is called before the first frame update
     void Start()
@@ -32,66 +33,14 @@ public class CharacterMovement : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");
         characterRB.velocity = new Vector3(horizontal * aceleration * Time.fixedDeltaTime, 0, vertical * aceleration * Time.fixedDeltaTime);
 
-        //ROTACION A 8 PUNTOS
-        if (((vertical > 0 && vertical <= 1) && horizontal == 0) )
-        {
-            //Debug.Log("W");
-            rotation(90);
-            
-        }
-        else if (((vertical < 0 && vertical >= -1) && horizontal == 0))
-        {
-            //Debug.Log("S");
-            rotation(270);
+       movimiento= new Vector2(horizontal*-1,vertical);
+        if(movimiento!= Vector2.zero){
 
+            angulo = Mathf.Atan2(movimiento.y, movimiento.x) * Mathf.Rad2Deg;
+            this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, Quaternion.Euler(0, angulo, 0), aceleration * Time.fixedDeltaTime);
         }
 
-        if (((horizontal > 0 && horizontal <= 1) && vertical == 0))
-        {
-            //Debug.Log("D");
-            rotation(180);
-        }
-        else if (((horizontal < 0 && horizontal >= -1) && vertical == 0))
-        {
-            //Debug.Log("A");
-            rotation(0);
-        }
-        else if (((vertical > 0 && vertical <= 1) && (horizontal < 0 && horizontal >= -1)))
-        {
-            //Debug.Log("WA");
-            rotation(45);
-        }
-        else if (((vertical > 0 && vertical <= 1) && (horizontal > 0 && horizontal <= 1)))
-        {
-            //Debug.Log("WD");
-            rotation(135);
-        }
-        else if (((horizontal < 0 && horizontal >= -1) && (vertical < 0 && vertical >= -1)))
-        {
-            //Debug.Log("AS");
-            rotation(315);
-        }
-        else if (((vertical < 0 && vertical >= -1) && (horizontal > 0 && horizontal <= 1)))
-        {
-            //Debug.Log("SD");
-            rotation(225);
-        }
 
-    }
-
-    private void rotation(int grade)
-    {
-        if (rotationgrade < grade)
-        {
-            this.transform.Rotate(0, 5, 0, Space.Self);
-            rotationgrade += 5;
-
-        }
-        else if (rotationgrade > grade )
-        {
-            this.transform.Rotate(0, -5, 0, Space.Self);
-            rotationgrade -= 5;
-        }
     }
 
     }
