@@ -11,7 +11,14 @@ using UnityEngine.Events;
 public class Dice : MonoBehaviour
 {
     [SerializeField]
-    private TMP_Text[] diceFacesValues;
+    private TMP_Text[] diceFacesActualValues;
+    [SerializeField]
+    private TMP_Text[] diceFacesInitialValues;
+    [SerializeField]
+    private TMP_Text[] diceFacesModValues;
+    [SerializeField]
+    private GameObject[] diceFacesColor;
+
     [SerializeField]
     private Transform[] diceFaces;
     [SerializeField]
@@ -38,7 +45,7 @@ public class Dice : MonoBehaviour
         
         rb = GetComponent<Rigidbody>();
 
-        DicePrefabValues.Habilidad();
+        DicePrefabValues.Espada();
 
         //Apagado hasta arreglar!
         diceValuesUpdate();
@@ -165,23 +172,41 @@ public class Dice : MonoBehaviour
     private void diceValuesUpdate()
     {
         
-        for (int i = 0; i < diceFacesValues.Length; i++) {
+        for (int i = 0; i < diceFacesActualValues.Length; i++) {
 
-            //Carga el valor del dado            
-            diceFacesValues[i].SetText((DiceCreator.getValueOfFace(i)+ mejoraTemporal )+"");
+            //Cargar el Initial Value 
+            diceFacesInitialValues[i].SetText(DiceCreator.getValueOfFace(i)+"");
+
+            //Cargar Modificador
+            //Si el modificador es 0 lo deja en vacio
+            if(mejoraTemporal == 0)
+            {
+                diceFacesModValues[i].SetText("");
+                diceFacesActualValues[i].SetText(DiceCreator.getValueOfFace(i)+"");
+            } else
+            {
+                //pone el valor del modificador
+                diceFacesModValues[i].SetText("+ " + mejoraTemporal);
+                //pone el Valor actual del dado con la suma del modificador.
+                diceFacesActualValues[i].SetText((DiceCreator.getValueOfFace(i) + mejoraTemporal) + "");
+            }
+            
 
             //Segun el tipo de dado un color u otros
             int tipe = DiceCreator.getTipeOfFace(i);
 
             if (tipe == 1) //Ataque
             {
-                diceFacesValues[i].color = Color.red;
+                diceFacesColor[i].GetComponent<Renderer>().material.color = Color.red;
+                //diceFacesActualValues[i].color = Color.red;
             } else if (tipe == 2) //Defensa
             {
-                diceFacesValues[i].color = Color.gray;
+                diceFacesColor[i].GetComponent<Renderer>().material.color = Color.gray;
+                //diceFacesActualValues[i].color = Color.gray;
             } else if (tipe == 3) //Habilidad
             {
-                diceFacesValues[i].color = Color.yellow;
+                diceFacesColor[i].GetComponent<Renderer>().material.color = Color.yellow;
+                //diceFacesActualValues[i].color = Color.yellow;
             }
             
 

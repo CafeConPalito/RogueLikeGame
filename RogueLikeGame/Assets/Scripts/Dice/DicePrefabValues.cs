@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DicePrefabValues : MonoBehaviour
+public class DicePrefabValues
 {
     private void Awake()
     {
@@ -25,8 +25,8 @@ public class DicePrefabValues : MonoBehaviour
     {
         DiceFace[] faces = new DiceFace[6];
         faces[0] = new DiceFace(1, 1);
-        faces[1] = new DiceFace(1, 1);
-        faces[2] = new DiceFace(1, 1);
+        faces[1] = new DiceFace(2, 1);
+        faces[2] = new DiceFace(3, 1);
         faces[3] = new DiceFace(1, 1);
         faces[4] = new DiceFace(1, 1);
         faces[5] = new DiceFace(1, 1);
