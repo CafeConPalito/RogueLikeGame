@@ -12,25 +12,6 @@ public class CharacterCollition : MonoBehaviour
     //Evento de la habitacion resuelto
     private bool roomEvent = false;
 
-    
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("EnterRoom"))
-        {
-            print("entré, picha");
-            print(other.name);
-            GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
-
-            Transform spawnPoint = other.transform.Find("spawnCamara");
-            print(cam.name);
-            print(spawnPoint.name);
-            //cam.transform.position = Vector3.MoveTowards(cam.transform.position, spawnPoint.position,Time.deltaTime*3);
-            
-            //enterRoom(other.transform.Find("StartPosChar"));
-            //SmoothTranlation(other.transform.Find("StartPosChar"));
-        }
-    }
-    
 
     /*
     //Funciona como un update de Triger

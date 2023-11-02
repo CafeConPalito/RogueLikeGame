@@ -158,7 +158,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 808169247740308615}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -415,7 +415,6 @@ MonoBehaviour:
   - {fileID: 2839621948892532010}
   - {fileID: 2410112424765083375}
   - {fileID: 1838836314026320737}
-  spawnCamara: {fileID: 1741881684069056671}
 --- !u!1 &6880201060080746958
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,6 +587,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7052257688375017871}
   - component: {fileID: 1926342060558610221}
+  - component: {fileID: 5124599668057530341}
   m_Layer: 0
   m_Name: roomcollider
   m_TagString: EnterRoom
@@ -629,8 +629,21 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 14.8606415, y: 0.35011414, z: 15.009183}
-  m_Center: {x: 0.77462006, y: -0.3249429, z: 4.0106034}
+  m_Size: {x: 13.623583, y: 0.5130377, z: 13.582167}
+  m_Center: {x: -0.016263008, y: 0.30514073, z: 3.9648857}
+--- !u!114 &5124599668057530341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8732690337404184435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c33f05561a8c0d744a8a83f81f397f85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPointCamera: {fileID: 1741881684069056671}
 --- !u!1001 &8605521022896196
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -6,7 +6,6 @@ public class RoomVehaviour : MonoBehaviour
 {
     public GameObject[] walls;// up, down, right, left
     public GameObject[] doors;
-    public Transform spawnCamara;
 
     //public bool[] testStatus;
 
