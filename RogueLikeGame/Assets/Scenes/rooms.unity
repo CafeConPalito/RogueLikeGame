@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3731193, g: 0.3807401, b: 0.358727, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -191,6 +191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myHero: {fileID: 8714066329573744770, guid: 08c5b71eeccb6f443980272c97668305, type: 3}
+  bigBoss: {fileID: 4501780673954014008, guid: 8283894f5d6d75c4c80b08392a2e9f6f, type: 3}
 --- !u!1 &1780721028
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,13 +251,13 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 61
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -277,7 +278,7 @@ Transform:
   m_GameObject: {fileID: 1780721028}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5581399, y: -0, z: -0, w: 0.8297469}
-  m_LocalPosition: {x: 0, y: 13.27, z: -1.96}
+  m_LocalPosition: {x: 0, y: 13.27, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

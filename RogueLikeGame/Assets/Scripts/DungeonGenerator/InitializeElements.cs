@@ -8,6 +8,7 @@ public class InitializeElements : MonoBehaviour
     // Reference to the Prefab. Drag a Prefab into this field in the Inspector.
  
     public GameObject myHero;
+    public GameObject bigBoss;
     //public GameObject parentRoom;
     private bool elementsOnDungeon;// controla la colocacion de los personajes y elementos dentro del programa.
 
@@ -26,6 +27,9 @@ public class InitializeElements : MonoBehaviour
             print(DungeonGenerator.roomsListToOperate[i].transform.position);
         }
         */
+
+        spawnPoint = transform.TransformPoint(DungeonGenerator.roomsListToOperate[DungeonGenerator.roomsListToOperate.Length - 1].transform.position);
+        Instantiate(bigBoss, spawnPoint, Quaternion.identity);
 
     }
 

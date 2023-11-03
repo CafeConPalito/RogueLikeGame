@@ -7,6 +7,8 @@ public class RoomControlCamera : MonoBehaviour
 
     [SerializeField]
     private Transform spawnPointCamera;
+    [SerializeField]
+    private GameObject room;
 
     private GameObject cam;
 
@@ -14,27 +16,19 @@ public class RoomControlCamera : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        SetGameLayerRecursive(room, 0);
+
         if (other.CompareTag("Player") && !moveCamera)
         {
-            print("entré, picha");
-            //print(other.name);
-            //Transform spawnPoint = other.transform.Find("spawnCamara");
-            //print(cam.name);
-            //print(spawnPoint.name);
-            
             cam = GameObject.FindGameObjectWithTag("MainCamera");
-            //cam.transform.position = spawnPointCamera.transform.position;
-            
-            //cam.transform.position = Vector3.MoveTowards(cam.transform.position, spawnPointCamera.position,Time.deltaTime*3);
-            
-            moveCamera = true;
-            
-            //enterRoom(other.transform.Find("StartPosChar"));
-            //SmoothTranlation(other.transform.Find("StartPosChar"));
-
+            moveCamera = true;   
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        SetGameLayerRecursive(room, 6);
+    }
 
     private void LateUpdate()
     {
@@ -43,12 +37,23 @@ public class RoomControlCamera : MonoBehaviour
             print("MoveCamera False");
             moveCamera = false;
         }
-
         if (moveCamera && cam.transform.position != spawnPointCamera.position) { 
             cam.transform.position = Vector3.Lerp(cam.transform.position, spawnPointCamera.position, Time.deltaTime*15);
             print("MoveCamera True");
         }
-        
     }
-    
+    /// <summary>
+    /// Cambia todos los Objetos dentro de Rom a la Hierarchi seleccionada 0 = Default   6 = Invisible
+    /// </summary>
+    /// <param name="gameObject"></param> 
+    /// <param name="layer"></param> 0 = Default   6 = Invisible
+    private void SetGameLayerRecursive(GameObject gameObject, int layer)
+    {
+        gameObject.layer = layer;
+        foreach (Transform child in gameObject.transform)
+        {
+            SetGameLayerRecursive(child.gameObject, layer);
+        }
+    }
+
 }
