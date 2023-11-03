@@ -2,37 +2,47 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DiceCreator : MonoBehaviour
+public class DiceCreator : MonoBehaviour 
 {
 
-    DiceFace[] faces = new DiceFace[6];
+    private static DiceFace[] faces = new DiceFace[6];
+    //private readonly DiceFace valor;
 
-    public DiceCreator()
+    public static void createDice(DiceFace[] caras)
+    //public static void createDice(int[] tipe, int[] fValue)
     {
-        faces[0] = new DiceFace(1, 1);
-        faces[1] = new DiceFace(1, 1);
-        faces[2] = new DiceFace(1, 1);
-        faces[3] = new DiceFace(1, 1);
-        faces[4] = new DiceFace(1, 1);
-        faces[5] = new DiceFace(1, 1);
+        for (int i = 0; i < faces.Length; i++)
+        {
+            //valor.Tipe = 2;
+            //sout(valor.Tipe)
+
+            //valor.Tipe = tipe[i];
+            //valor.FValue = fValue[i];
+
+            faces[i] = caras[i];
+
+            //NO LE GUSTA EL NEW
+            //faces[0] = new DiceFace(tipe[i],fValue[i]);
+
+        }
     }
 
-    public int getValueOfFace (int index)
+    public static int getValueOfFace (int index)
     {
         return faces[index].FValue;
     }
 
-    public int getTipeOfFace (int index)
+    public static int getTipeOfFace (int index)
     {
         return faces[index].Tipe;
     }
 
-    public void modifiValueOfFace(int index, int fValue)
+    public static void modifiValueOfFace(int index, int fValue)
     {
         faces[index].FValue = fValue;
     }
 
-    public void modifiFaceOfDice(int index, int tipe, int fValue)
+    public static void modifiFaceOfDice(int index, int tipe, int fValue)
     {
         faces[index].Tipe = tipe;
         faces[index].FValue = fValue;

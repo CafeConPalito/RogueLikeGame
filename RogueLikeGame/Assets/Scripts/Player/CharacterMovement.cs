@@ -31,7 +31,7 @@ public class CharacterMovement : MonoBehaviour
     {
         float vertical = Input.GetAxisRaw("Vertical");
         float horizontal = Input.GetAxisRaw("Horizontal");
-        characterRB.velocity = new Vector3(horizontal * aceleration * Time.fixedDeltaTime, 0, vertical * aceleration * Time.fixedDeltaTime);
+        characterRB.velocity = new Vector3(horizontal * aceleration * Time.fixedDeltaTime,0, vertical * aceleration * Time.fixedDeltaTime);
 
        movimiento= new Vector2(horizontal*-1,vertical);
         if(movimiento!= Vector2.zero){

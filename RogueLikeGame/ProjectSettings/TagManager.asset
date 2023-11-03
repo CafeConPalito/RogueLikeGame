@@ -8,6 +8,8 @@ TagManager:
   - Rooms
   - PosCharacter
   - EnterRoom
+  - DiceSpawnPoint
+  - spawnCamara
   layers:
   - Default
   - TransparentFX
@@ -15,7 +17,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Invisible
   - 
   - 
   - 
