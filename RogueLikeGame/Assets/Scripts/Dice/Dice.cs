@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,55 +11,61 @@ using UnityEngine.Events;
 
 public class Dice : MonoBehaviour
 {
-    [SerializeField]
-    private TMP_Text[] diceFacesActualValues;
-    [SerializeField]
-    private TMP_Text[] diceFacesInitialValues;
-    [SerializeField]
-    private TMP_Text[] diceFacesModValues;
-    [SerializeField]
-    private GameObject[] diceFacesColor;
 
     [SerializeField]
-    private Transform[] diceFaces;
-    [SerializeField]
     private Rigidbody rb;
+
+    [SerializeField] // Valor de las caras Actual añadiendo Modificadores
+    private TMP_Text[] diceFacesActualValues;
+    [SerializeField] //Valor de las caras Iniciales, sin mods
+    private TMP_Text[] diceFacesInitialValues;
+    [SerializeField] //Valor de los modificadores
+    private TMP_Text[] diceFacesModValues;
+    [SerializeField] //Valor para determinar el Color de las caras
+    private GameObject[] diceFacesColor;
+    [SerializeField] //Valor para saber que cara quedo arriba.
+    private Transform[] diceFaces;
 
     [SerializeField]
     private int mejoraTemporal = 0;
 
-    //Para Borrar
-    private int _diceIndex = -1;
-
+    //Desde donde se lanza el cubo
+    [SerializeField]
+    private Transform DiceSpawnPoint;
+    
+    //Plataforma donde se Coloca el dado
+    [SerializeField]
+    private BoxCollider platform;
 
     private bool _hasStoppedRoll;
     private bool _delayFinished;
-    
-    [SerializeField]
-    private bool terminoLaJugada;
+    private bool _diceTrow;
+
 
     //Para Borrar
+    private int _diceIndex = -1;
+    //Para Borrar
     public static UnityAction<int, int> OnDiceResult;
+    
+    /// <summary>
+    /// Metodo set y get de HasStoppedRoll del dado
+    /// </summary>
+    public bool HasStoppedRoll { get => _hasStoppedRoll; set => _hasStoppedRoll = value; }
 
     private void Awake()
     {
-        
-        rb = GetComponent<Rigidbody>();
-
         DicePrefabValues.Espada();
-
-        //Apagado hasta arreglar!
         diceValuesUpdate();
-
     }
 
     //https://www.youtube.com/watch?v=cd66wLNvVh8
     private void Update()
     {
         //Precionando la tecla espacio lanza el dado
-        if (!terminoLaJugada && Input.GetKeyDown(KeyCode.Space))
+        if (DicesControl.TrowDices && !_diceTrow)
         {
-            terminoLaJugada = true;
+            //print($"Al lanzar el eje x es = {rb.transform.rotation.eulerAngles}");
+            _diceTrow = true;
             RollDice();
         }
 
@@ -68,41 +75,58 @@ public class Dice : MonoBehaviour
         if (!_hasStoppedRoll && rb.velocity.sqrMagnitude == 0f)
         {
             _hasStoppedRoll = true;
-            
+            /*
+            print($"Al parar los ejes rot son = {rb.transform.rotation.eulerAngles}");
+            print($"Al parar los ejes rot normalizados son = {rb.transform.rotation.eulerAngles.normalized}");
+            print($"Al parar los ejes x son = {rb.transform.rotation.eulerAngles.x}");
+            print($"Al parar los ejes y son = {rb.transform.rotation.eulerAngles.y}");
+            print($"Al parar los ejes z son = {rb.transform.rotation.eulerAngles.z}");
+            */
         }
-        
+
         //utilizando el Boleano de que ya paro el dado,
         //si la jugada termino Obtenemos el resultado
         //se ponen todos los Boleanos a false para poder volver a lanzar
-        if (_hasStoppedRoll && terminoLaJugada)
+
+        if (_hasStoppedRoll && !DicesControl.DicesRolling)
         {
-            //Debug.Log($"Dado en el Suelo = Eje X: {rb.transform.rotation.x} Eje Y: {rb.transform.rotation.y} Eje Z: {rb.transform.rotation.z} ");
+
+            //ARREGLADO PARA MAS DE UN SPAWN POINT
+            //con Movimiento
             
-            Transform DiceSpawnPoint = GameObject.FindGameObjectWithTag("DiceSpawnPoint").transform;
-            //lleva el dado al SpawnPoint
+            /*
+            float aceleration = 0.3f;
+            print($" aM RB{rb.transform.position} SP{DiceSpawnPoint.position}");
+            while (rb.transform.position!= DiceSpawnPoint.position) {
+            rb.transform.position = Vector3.MoveTowards(rb.transform.position, DiceSpawnPoint.position, Time.deltaTime);
+                print($" DM RB{rb.transform.position} SP{DiceSpawnPoint.position}");
+            }
+            platform.enabled = true;
+            */
+
+
+
+            //ESTO FUNCIONA BIEN
+
+            //lleva el dado al SpawnPoint sin Movimiento
+            platform.enabled = true;
             rb.transform.position = DiceSpawnPoint.position;
-            
+
             //Girar el dado para que quede con el texto bien!
             rb.transform.eulerAngles = new Vector3 (rb.transform.eulerAngles.x, 0f, rb.transform.eulerAngles.z);
             GetFaceSideUp();
             diceValuesUpdate();
 
-            //con Movimiento
-            //float aceleration = 9f;
-            //rb.transform.position = Vector3.MoveTowards(rb.transform.position, DiceSpawnPoint.position, Time.deltaTime * aceleration);
-            //GetFaceSideUp();
+            
 
             _hasStoppedRoll = false;
-            terminoLaJugada = false;
             _delayFinished = false;
+            _diceTrow = false;
 
         }
         
-
     }
     
-    
-
     /// <summary>
     /// Indica que cara esta hacia arriba
     /// </summary>
@@ -111,10 +135,8 @@ public class Dice : MonoBehaviour
     private int GetFaceSideUp()
     {
         if (diceFaces == null) return -1;
-
         var topFace = 0;
         var lastYPosition = diceFaces[0].position.y;
-
         // por cada cara del dado comprobamos cual esta mas arriba
         for (int i = 0; i < diceFaces.Length; i++)
         {
@@ -125,11 +147,9 @@ public class Dice : MonoBehaviour
 
             }
         }
-
-        Debug.Log( $"Cara del dado Array {topFace}");
-                
-        OnDiceResult?.Invoke(_diceIndex, topFace);
-
+        //Debug.Log( $"Cara del dado Array {topFace}");   
+        //OnDiceResult?.Invoke(_diceIndex, topFace);
+        print($"masArryba{lastYPosition}");
         return topFace;
 
     }
@@ -145,11 +165,10 @@ public class Dice : MonoBehaviour
         rb.transform.rotation = Quaternion.identity;
         //Debug.Log($"Lanzando Dado = Eje X: {rb.transform.rotation.x} Eje Y: {rb.transform.rotation.y} Eje Z: {rb.transform.rotation.z} ");
 
-        float throwForce = UnityEngine.Random.Range(5f, 8f);
+        float throwForce = UnityEngine.Random.Range(10f, 15f);
         float rollForce = UnityEngine.Random.Range(3f, 5f);
-        float verticalForece = 7f;
+        float verticalForece = 6f;
         
-
         rb.AddForce(transform.InverseTransformVector(0,verticalForece,throwForce),ForceMode.Impulse);
 
         var randX = UnityEngine.Random.Range(1f, 2f);
@@ -158,20 +177,22 @@ public class Dice : MonoBehaviour
 
         rb.AddTorque(new Vector3(randX,randY,randZ)* rollForce, ForceMode.Impulse);
 
-        DelayResult();
-        
+        platform.enabled = false;
 
+        DelayResult(); 
+        
     }
 
     private async void DelayResult()
     {
-        await Task.Delay(1000);
+        //print("entrando al wait");
+        await Task.Delay(3500);
         _delayFinished = true;
+        //print("Saliendo del wait");
     }
 
     private void diceValuesUpdate()
     {
-        
         for (int i = 0; i < diceFacesActualValues.Length; i++) {
 
             //Cargar el Initial Value 
@@ -191,7 +212,6 @@ public class Dice : MonoBehaviour
                 diceFacesActualValues[i].SetText((DiceCreator.getValueOfFace(i) + mejoraTemporal) + "");
             }
             
-
             //Segun el tipo de dado un color u otros
             int tipe = DiceCreator.getTipeOfFace(i);
 
@@ -202,16 +222,17 @@ public class Dice : MonoBehaviour
             } else if (tipe == 2) //Defensa
             {
                 diceFacesColor[i].GetComponent<Renderer>().material.color = Color.gray;
+                
                 //diceFacesActualValues[i].color = Color.gray;
             } else if (tipe == 3) //Habilidad
             {
                 diceFacesColor[i].GetComponent<Renderer>().material.color = Color.yellow;
                 //diceFacesActualValues[i].color = Color.yellow;
             }
-            
 
+            
         }
 
-
     }
+
 }

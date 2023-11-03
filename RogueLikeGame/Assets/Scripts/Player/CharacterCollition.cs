@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class CharacterColition : MonoBehaviour
+public class CharacterCollition : MonoBehaviour
 {
 
     [SerializeField]
@@ -12,18 +12,8 @@ public class CharacterColition : MonoBehaviour
     //Evento de la habitacion resuelto
     private bool roomEvent = false;
 
+
     /*
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("EnterRoom"))
-        {
-            enterRoom(other.transform.Find("StartPosChar"));
-            //SmoothTranlation(other.transform.Find("StartPosChar"));
-        }
-    }
-    */
-
-
     //Funciona como un update de Triger
     private void OnTriggerStay(Collider other)
     {
@@ -46,7 +36,7 @@ public class CharacterColition : MonoBehaviour
 
         }
 
-    }
+    }*/
 
 
 }
