@@ -10,6 +10,7 @@ TagManager:
   - EnterRoom
   - DiceSpawnPoint
   - spawnCamara
+  - Decoration
   layers:
   - Default
   - TransparentFX
