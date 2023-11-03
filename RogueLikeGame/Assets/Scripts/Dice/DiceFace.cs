@@ -26,5 +26,4 @@ public class DiceFace : MonoBehaviour
     public int Tipe { get => tipe; set => tipe = value; }
 
 
-
 }
