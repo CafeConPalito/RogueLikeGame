@@ -40,8 +40,9 @@ public class InitializaDecoration : MonoBehaviour
 
     }
 
-    private void Start()
+    private void Awake()
     {
         setElements();
     }
+
 }
