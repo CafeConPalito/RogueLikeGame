@@ -16,13 +16,25 @@ public class RoomControlCamera : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        
         SetGameLayerRecursive(room, 0);
-
+        
         if (other.CompareTag("Player") && !moveCamera)
         {
             cam = GameObject.FindGameObjectWithTag("MainCamera");
             moveCamera = true;   
         }
+        
+        /*
+        SetGameLayerRecursive(room, 0);
+
+        if (other.CompareTag("Player")  && cam.transform.position != spawnPointCamera.position)
+        {
+            
+            StartMoving();
+        }
+        */
+
     }
 
     private void OnTriggerExit(Collider other)
@@ -32,6 +44,7 @@ public class RoomControlCamera : MonoBehaviour
 
     private void LateUpdate()
     {
+        
         if (moveCamera && cam.transform.position == spawnPointCamera.position)
         {
             print("MoveCamera False");
@@ -41,6 +54,7 @@ public class RoomControlCamera : MonoBehaviour
             cam.transform.position = Vector3.Lerp(cam.transform.position, spawnPointCamera.position, Time.deltaTime*15);
             print("MoveCamera True");
         }
+        
     }
     /// <summary>
     /// Cambia todos los Objetos dentro de Rom a la Hierarchi seleccionada 0 = Default   6 = Invisible
@@ -54,6 +68,20 @@ public class RoomControlCamera : MonoBehaviour
         {
             SetGameLayerRecursive(child.gameObject, layer);
         }
+    }
+
+
+    void StartMoving()
+    {
+        StartCoroutine(DoMoving());
+    }
+
+    IEnumerator DoMoving()
+    {
+        cam.transform.position = Vector3.Lerp(cam.transform.position, spawnPointCamera.position, Time.deltaTime * 15);
+        yield return new WaitForSeconds(2f);
+
+        // ... other sequential actions here?
     }
 
 }
