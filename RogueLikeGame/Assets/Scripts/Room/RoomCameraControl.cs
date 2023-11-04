@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoomControlCamera : MonoBehaviour
+public class RoomCameraControl : MonoBehaviour
 {
 
     [SerializeField]
@@ -16,7 +16,7 @@ public class RoomControlCamera : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        SetGameLayerRecursive(room, 0);
+        ChangeLayer.SetGameLayerRecursive(room, 0);
 
         if (other.CompareTag("Player") && !moveCamera)
         {
@@ -27,7 +27,7 @@ public class RoomControlCamera : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        SetGameLayerRecursive(room, 6);
+        ChangeLayer.SetGameLayerRecursive(room, 6);
     }
 
     private void LateUpdate()
@@ -40,19 +40,6 @@ public class RoomControlCamera : MonoBehaviour
         if (moveCamera && cam.transform.position != spawnPointCamera.position) { 
             cam.transform.position = Vector3.Lerp(cam.transform.position, spawnPointCamera.position, Time.deltaTime*15);
             print("MoveCamera True");
-        }
-    }
-    /// <summary>
-    /// Cambia todos los Objetos dentro de Rom a la Hierarchi seleccionada 0 = Default   6 = Invisible
-    /// </summary>
-    /// <param name="gameObject"></param> 
-    /// <param name="layer"></param> 0 = Default   6 = Invisible
-    private void SetGameLayerRecursive(GameObject gameObject, int layer)
-    {
-        gameObject.layer = layer;
-        foreach (Transform child in gameObject.transform)
-        {
-            SetGameLayerRecursive(child.gameObject, layer);
         }
     }
 
