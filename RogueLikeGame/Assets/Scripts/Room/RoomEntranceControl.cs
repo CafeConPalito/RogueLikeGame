@@ -24,14 +24,17 @@ public class NewBehaviourScript : MonoBehaviour
     private IEnumerator GoTo(GameObject Player)
     {
         CharacterMovement.PlayerAnimationStart();
-        while ((charSpawnPoint.position - transform.position).sqrMagnitude > arrivalDistance)
+        ChangeLayer.SetGameLayerRecursive(Player, 6);
+        //while ((charSpawnPoint.position - transform.position).sqrMagnitude > arrivalDistance)
+        while (Player.transform.position != charSpawnPoint.position)
         {
-            Player.transform.position = UnityEngine.Vector3.MoveTowards(Player.transform.position, charSpawnPoint.position, Time.deltaTime * 2);
+            Player.transform.position = UnityEngine.Vector3.MoveTowards(Player.transform.position, charSpawnPoint.position, Time.deltaTime * 15);
             yield return null;
         }
 
         print("termine");
         CharacterMovement.PlayerAnimationStop();
+        ChangeLayer.SetGameLayerRecursive(Player, 0);
 
     }
 
