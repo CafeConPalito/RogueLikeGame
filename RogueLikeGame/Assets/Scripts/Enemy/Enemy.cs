@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
 
     [SerializeField]
-    private Transform playerPosition;
+    private Transform playerFigthPosition;
 
     [SerializeField]
     private bool figthEvent;
@@ -21,12 +21,6 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         
-        if (figthEvent)
-        {
-            GameObject.FindGameObjectWithTag("Player").transform.position = playerPosition.transform.position;
-            //Mueve al personaje a este punto con calmita :D
-        }
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -35,6 +29,7 @@ public class Enemy : MonoBehaviour
         if (!figthEvent && other.CompareTag("Player"))
         {
             figthEvent = true;
+            StartCoroutine(CharacterMovement.CorutinePlayerStratFigth(playerFigthPosition));
         }
 
     }

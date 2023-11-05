@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 962078dc6fa5d424db581b51769a69bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPosition: {fileID: 8251815645618423404}
+  playerFigthPosition: {fileID: 8251815645618423404}
   figthEvent: 0
 --- !u!1 &4501780673954014008
 GameObject:

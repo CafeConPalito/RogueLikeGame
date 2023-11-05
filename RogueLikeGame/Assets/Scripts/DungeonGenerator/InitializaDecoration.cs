@@ -19,11 +19,11 @@ public class InitializaDecoration : MonoBehaviour
         foreach (GameObject element in spawnpoint)
         {
             int r= Random.Range(0,decorations.Length+1);
-            if (r!= decorations.Length + 1)
+            if (r!= decorations.Length)
             {
-                float rotacion = Random.Range(0f, 360f);
+                
                 GameObject x =Instantiate(decorations[r], element.transform);
-                x.transform.Rotate(0,rotacion,0);
+                x.transform.Rotate(0, Random.Range(0f, 360f), 0);//Añade rotacion al Objeto ;)
             }
         }
 

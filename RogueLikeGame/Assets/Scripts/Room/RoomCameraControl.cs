@@ -34,12 +34,12 @@ public class RoomCameraControl : MonoBehaviour
     {
         if (moveCamera && cam.transform.position == spawnPointCamera.position)
         {
-            print("MoveCamera False");
+            //print("MoveCamera False");
             moveCamera = false;
         }
         if (moveCamera && cam.transform.position != spawnPointCamera.position) { 
             cam.transform.position = Vector3.Lerp(cam.transform.position, spawnPointCamera.position, Time.deltaTime*15);
-            print("MoveCamera True");
+            //print("MoveCamera True");
         }
     }
 
