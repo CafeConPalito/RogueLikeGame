@@ -9,8 +9,8 @@ public class CharacterMovement : MonoBehaviour
     private Rigidbody characterRB;
     [SerializeField]
     private Collider characterCol;
-    private static Rigidbody moveRB;
-    private static Collider  moveCol;
+    private static Rigidbody PlayerStaticRB;
+    private static Collider  PlayerStaticCollider;
 
     private static bool canMove = true;
 
@@ -25,8 +25,8 @@ public class CharacterMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        moveRB = characterRB;
-        moveCol = characterCol;
+        PlayerStaticRB = characterRB;
+        PlayerStaticCollider = characterCol;
     }
 
     // Update is called once per frame
@@ -55,16 +55,34 @@ public class CharacterMovement : MonoBehaviour
     public static void PlayerAnimationStart()
     {
         canMove = false;
-        moveRB.useGravity = false;
-        moveRB.detectCollisions = false;
+        PlayerStaticRB.useGravity = false;
+        PlayerStaticRB.detectCollisions = false;
     }
 
     public static void PlayerAnimationStop()
     {
         canMove = true;
-        moveRB.useGravity = true;
-        moveRB.detectCollisions = true;
+        PlayerStaticRB.useGravity = true;
+        PlayerStaticRB.detectCollisions = true;
+
+    }
+
+   
+    public static void PlayerEndFihth()
+    {
+        canMove = true;
+    }
+
+    public static IEnumerator CorutinePlayerStratFigth(Transform charFigthPoint)
+    {
         
+        canMove= false;
+        while (PlayerStaticRB.transform.position != charFigthPoint.position)
+        {
+            PlayerStaticRB.transform.position = UnityEngine.Vector3.MoveTowards(PlayerStaticRB.transform.position, charFigthPoint.position, Time.deltaTime * 5);
+            yield return null;
+        }
+
     }
 
 }
