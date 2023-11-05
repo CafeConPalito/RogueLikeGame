@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 112556}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.49971873, y: 0.5034894, z: -0.50025815}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.33283097, y: 0.33283097, z: 0.33283097}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -93,6 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 470824}
   - component: {fileID: 20507552}
+  - component: {fileID: 644211764833723597}
   m_Layer: 6
   m_Name: Crate1
   m_TagString: Untagged
@@ -140,6 +141,27 @@ LODGroup:
     renderers:
     - renderer: {fileID: 2346214}
   m_Enabled: 1
+--- !u!65 &644211764833723597
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182668}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &196250
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,7 +189,7 @@ Transform:
   m_GameObject: {fileID: 196250}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.49971873, y: 0.5034894, z: -0.50025815}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.33283097, y: 0.33283097, z: 0.33283097}
   m_ConstrainProportionsScale: 0
   m_Children: []

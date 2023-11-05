@@ -21,7 +21,9 @@ public class InitializaDecoration : MonoBehaviour
             int r= Random.Range(0,decorations.Length+1);
             if (r!= decorations.Length + 1)
             {
+                float rotacion = Random.Range(0f, 360f);
                 GameObject x =Instantiate(decorations[r], element.transform);
+                x.transform.Rotate(0,rotacion,0);
             }
         }
 
@@ -40,8 +42,9 @@ public class InitializaDecoration : MonoBehaviour
 
     }
 
-    private void Start()
+    private void Awake()
     {
         setElements();
     }
+
 }
