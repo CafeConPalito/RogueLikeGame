@@ -165,9 +165,9 @@ public class Dice : MonoBehaviour
         rb.transform.rotation = Quaternion.identity;
         //Debug.Log($"Lanzando Dado = Eje X: {rb.transform.rotation.x} Eje Y: {rb.transform.rotation.y} Eje Z: {rb.transform.rotation.z} ");
 
-        float throwForce = UnityEngine.Random.Range(10f, 15f);
+        float throwForce = UnityEngine.Random.Range(15f, 20f);
         float rollForce = UnityEngine.Random.Range(3f, 5f);
-        float verticalForece = 6f;
+        float verticalForece = 3f;
         
         rb.AddForce(transform.InverseTransformVector(0,verticalForece,throwForce),ForceMode.Impulse);
 
