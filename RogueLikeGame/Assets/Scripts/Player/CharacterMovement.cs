@@ -42,7 +42,7 @@ public class CharacterMovement : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");
         characterRB.velocity = new Vector3(horizontal * aceleration * Time.fixedDeltaTime,0, vertical * aceleration * Time.fixedDeltaTime);
 
-       movimiento= new Vector2(horizontal*-1,vertical);
+        movimiento= new Vector2(horizontal*-1,vertical);
         if(canMove && movimiento!= Vector2.zero){
 
             angulo = Mathf.Atan2(movimiento.y, movimiento.x) * Mathf.Rad2Deg;
