@@ -16,10 +16,11 @@ public class RoomCameraControl : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        ChangeLayer.SetGameLayerRecursive(room, 0);
+        
 
         if (other.CompareTag("Player") && !moveCamera)
         {
+            ChangeLayer.SetGameLayerRecursive(room, 0);
             cam = GameObject.FindGameObjectWithTag("MainCamera");
             moveCamera = true;   
         }
@@ -37,8 +38,9 @@ public class RoomCameraControl : MonoBehaviour
             //print("MoveCamera False");
             moveCamera = false;
         }
-        if (moveCamera && cam.transform.position != spawnPointCamera.position) { 
-            cam.transform.position = Vector3.Lerp(cam.transform.position, spawnPointCamera.position, Time.deltaTime*15);
+        if (moveCamera && cam.transform.position != spawnPointCamera.position) {
+            cam.transform.position= spawnPointCamera.position;
+            //cam.transform.position = Vector3.Lerp(cam.transform.position, spawnPointCamera.position, Time.deltaTime*15);
             //print("MoveCamera True");
         }
     }
