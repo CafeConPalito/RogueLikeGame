@@ -16,7 +16,7 @@ public class InitializeElements : MonoBehaviour
         Vector3 spawnPoint = transform.TransformPoint(DungeonGenerator.roomsListToOperate[0].transform.position);
         Instantiate(myHero,spawnPoint, Quaternion.identity);
 
-        ChangeLayer.SetGameLayerRecursive(DungeonGenerator.roomsListToOperate[0], 0);
+        //ChangeLayer.SetGameLayerRecursive(DungeonGenerator.roomsListToOperate[0], 0);
 
         /*
         for (int i=0; i<DungeonGenerator.roomsListToOperate.Length; i++)
