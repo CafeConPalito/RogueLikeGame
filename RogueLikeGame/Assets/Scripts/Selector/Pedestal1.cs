@@ -8,7 +8,8 @@ public class Pedestal1 : MonoBehaviour
     private GameObject dice;
     [SerializeField] 
     private GameObject door;
- 
+
+    private GameObject[] luces;
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -40,6 +41,16 @@ public class Pedestal1 : MonoBehaviour
         dice.GetComponent<Dice>().diceValuesUpdate();
         ChangeLayer.SetGameLayerRecursive(dice, 0);
         door.SetActive(false);
+        Destroy(this);
+
+        Destroy(this.gameObject);
+
+        luces = GameObject.FindGameObjectsWithTag("SpotLight1");
+
+        foreach (GameObject go in luces)
+        {
+            Destroy(go);
+        }
     }
 
 }
