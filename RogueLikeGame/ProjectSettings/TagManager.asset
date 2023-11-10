@@ -11,6 +11,10 @@ TagManager:
   - DiceSpawnPoint
   - spawnCamara
   - Decoration
+  - ChangeScene
+  - Pedestal0
+  - Pedestal1
+  - Pedestal2
   layers:
   - Default
   - TransparentFX

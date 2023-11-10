@@ -41,6 +41,8 @@ public class Dice : MonoBehaviour
     private bool _delayFinished;
     private bool _diceTrow;
 
+    private int weapon=2;
+
 
     //Para Borrar
     private int _diceIndex = -1;
@@ -51,12 +53,8 @@ public class Dice : MonoBehaviour
     /// Metodo set y get de HasStoppedRoll del dado
     /// </summary>
     public bool HasStoppedRoll { get => _hasStoppedRoll; set => _hasStoppedRoll = value; }
+    public int Weapon { get => weapon; set => weapon = value; }
 
-    private void Awake()
-    {
-        DicePrefabValues.Espada();
-        diceValuesUpdate();
-    }
 
     //https://www.youtube.com/watch?v=cd66wLNvVh8
     private void Update()
@@ -191,9 +189,22 @@ public class Dice : MonoBehaviour
         //print("Saliendo del wait");
     }
 
-    private void diceValuesUpdate()
+    public void diceValuesUpdate()
     {
-        for (int i = 0; i < diceFacesActualValues.Length; i++) {
+        switch (weapon)
+        {
+            case 0:
+                DicePrefabValues.Espada();
+                break;
+
+            case 1:
+                DicePrefabValues.Escudo();
+                break;
+            case 2:
+                DicePrefabValues.Habilidad();
+                break;
+        }
+                for (int i = 0; i < diceFacesActualValues.Length; i++) {
 
             //Cargar el Initial Value 
             diceFacesInitialValues[i].SetText(DiceCreator.getValueOfFace(i)+"");
