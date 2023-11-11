@@ -5,8 +5,9 @@ using UnityEngine;
 public class DiceFace : MonoBehaviour
 {
     /// <summary>
+    /// 0 Vacio, Color Gris
     /// 1 Ataque, Color Rojo 
-    /// 2 Defensa, Color Gris
+    /// 2 Defensa, Color Azul
     /// 3 Habilidad, Color Amarillo
     /// </summary>
     private int tipe;
