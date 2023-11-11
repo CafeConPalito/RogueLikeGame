@@ -17,7 +17,7 @@ public class Pedestal2 : MonoBehaviour
             if (Input.GetKey(KeyCode.T) && this.CompareTag("Pedestal0") && !GameManager.instance.Sala2){
                 //print("Pedestal0");
 
-                selectWeapon(0);
+                selectWeapon(3);
 
             }else if (Input.GetKey(KeyCode.T) && this.CompareTag("Pedestal1") && !GameManager.instance.Sala2)
             {

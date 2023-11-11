@@ -201,6 +201,9 @@ public class Dice : MonoBehaviour
                 DicePrefabValues.Escudo();
                 break;
             case 2:
+                DicePrefabValues.Arco();
+                break;
+            case 3:
                 DicePrefabValues.Habilidad();
                 break;
         }
@@ -232,16 +235,21 @@ public class Dice : MonoBehaviour
                 //diceFacesActualValues[i].color = Color.red;
             } else if (tipe == 2) //Defensa
             {
-                diceFacesColor[i].GetComponent<Renderer>().material.color = Color.gray;
+                diceFacesColor[i].GetComponent<Renderer>().material.color = Color.blue;
                 
-                //diceFacesActualValues[i].color = Color.gray;
+                //diceFacesActualValues[i].color = Color.blue;
             } else if (tipe == 3) //Habilidad
             {
                 diceFacesColor[i].GetComponent<Renderer>().material.color = Color.yellow;
                 //diceFacesActualValues[i].color = Color.yellow;
             }
-
+            else if(tipe == 0) 
+            {
+                diceFacesColor[i].GetComponent<Renderer>().material.color = Color.grey;
+            }
             
+
+
         }
 
     }

@@ -26,7 +26,7 @@ public class DicePrefabValues
         DiceFace[] faces = new DiceFace[6];
         faces[0] = new DiceFace(1, 1);
         faces[1] = new DiceFace(2, 1);
-        faces[2] = new DiceFace(3, 1);
+        faces[2] = new DiceFace(1, 1);
         faces[3] = new DiceFace(1, 1);
         faces[4] = new DiceFace(1, 1);
         faces[5] = new DiceFace(1, 1);
@@ -44,6 +44,17 @@ public class DicePrefabValues
         faces[3] = new DiceFace(2, 1);
         faces[4] = new DiceFace(2, 1);
         faces[5] = new DiceFace(2, 1);
+        DiceCreator.createDice(faces);
+    }
+    public static void Arco()
+    {
+        DiceFace[] faces = new DiceFace[6];
+        faces[0] = new DiceFace(1, 3);
+        faces[1] = new DiceFace(1, 3);
+        faces[2] = new DiceFace(1, 1);
+        faces[3] = new DiceFace(1, 1);
+        faces[4] = new DiceFace(0, 0);
+        faces[5] = new DiceFace(0, 0);
         DiceCreator.createDice(faces);
     }
 
