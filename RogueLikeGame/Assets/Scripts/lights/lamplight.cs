@@ -9,11 +9,17 @@ public class lamplight : MonoBehaviour
     private float maxRange=1.5f;
     private float flickerSpeed;
 
+    void Awake()
+    {
+        lt = GetComponent<Light>();
+        lt.intensity = UnityEngine.Random.Range(0.6f, 1.4f);
+        flickerSpeed = UnityEngine.Random.Range(1f, 5f);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        lt = GetComponent<Light>();
-        lt.intensity = minRange;
+
     }
 
     // Update is called once per frame
