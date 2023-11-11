@@ -9,7 +9,7 @@ using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody))]
 
-public class Dice : MonoBehaviour
+public class DiceEnemy : MonoBehaviour
 {
 
     [SerializeField]
