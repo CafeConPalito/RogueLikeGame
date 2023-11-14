@@ -33,7 +33,7 @@ public class CharacterMovement : MonoBehaviour
     void Update()
     {
 
-    }
+    }   
 
     //SI SE TRABAJA CON FISICAS HAY QUE USAR EL FIXEDUPDATE
     private void FixedUpdate()
@@ -44,12 +44,9 @@ public class CharacterMovement : MonoBehaviour
 
         movimiento= new Vector2(horizontal*-1,vertical);
         if(canMove && movimiento!= Vector2.zero){
-
             angulo = Mathf.Atan2(movimiento.y, movimiento.x) * Mathf.Rad2Deg;
             this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, Quaternion.Euler(0, angulo, 0), aceleration * Time.fixedDeltaTime);
         }
-
-
     }
 
     public static void PlayerAnimationStart()
@@ -67,7 +64,6 @@ public class CharacterMovement : MonoBehaviour
 
     }
 
-   
     public static void PlayerEndFihth()
     {
         canMove = true;
@@ -75,14 +71,12 @@ public class CharacterMovement : MonoBehaviour
 
     public static IEnumerator CorutinePlayerStratFigth(Transform charFigthPoint)
     {
-        
         canMove= false;
         while (PlayerStaticRB.transform.position != charFigthPoint.position)
         {
             PlayerStaticRB.transform.position = UnityEngine.Vector3.MoveTowards(PlayerStaticRB.transform.position, charFigthPoint.position, Time.deltaTime * 5);
             yield return null;
         }
-
     }
 
 }
