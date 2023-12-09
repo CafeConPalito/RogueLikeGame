@@ -10,7 +10,7 @@ public class ChangeScene : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             DontDestroyOnLoad(GameObject.FindGameObjectWithTag("MainCamera"));
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
            
 
         }
